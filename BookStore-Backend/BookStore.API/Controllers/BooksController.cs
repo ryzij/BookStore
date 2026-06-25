@@ -43,14 +43,14 @@ public class BooksController(IBooksService booksService) : ControllerBase
     [HttpPatch("{id}")]
     public async Task<ActionResult<Guid>> Update(Guid id, UpdateBookRequest request)
     {
-        await _booksService.UpdateBook(id, request.Title, request.Author, request.Description, request.Price);
-        return Ok(id);
+        var bookId = await _booksService.UpdateBook(id, request.Title, request.Author, request.Description, request.Price);
+        return Ok(bookId);
     }
 
     [HttpDelete("{id}")]
     public async Task<ActionResult<Guid>> Delete(Guid id)
     {
-        await _booksService.DeleteBook(id);
-        return Ok(id);
+        var bookId = await _booksService.DeleteBook(id);
+        return Ok(bookId);
     }
 }
