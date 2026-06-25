@@ -16,7 +16,7 @@ builder.Services.AddEndpointsApiExplorer().AddSwaggerGen();
 
 builder.Services.AddDbContext<BookStoreDbContext>(options =>
 {
-   options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+   options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"), o => o.EnableRetryOnFailure());
 });
 
 builder.Services.AddScoped<IBooksRepository, BooksRepository>();
